@@ -4,7 +4,7 @@
 LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系统。
 
 ## 2. 对接流程
-image
+<img src="https://github.com/leapin-ai/open-api/blob/main/LeapIn%20Integration.jpg"></img>
 
 ## 3. 概览
 |API|描述|
@@ -22,7 +22,8 @@ image
 <pre><code>POST /auth/</code></pre>
 
 
-- HTTP请求头  
+- HTTP请求头
+
 |Key|Value|
 |--|--|
 |leapin_access_id|API密钥ID|
@@ -40,6 +41,7 @@ image
 
 ### 4.3 调用
 - HTTP请求头
+
 |Key|Value|
 |--|--|
 |authorization|Bearer < token >|
@@ -59,12 +61,14 @@ image
 <pre><code>GET /jobs/</code></pre>
 
 - 查询参数
+
 |字段|说明|
 |--|--|
 |page|分页第几页|
 |page_size|分页数据条数|
 
 - 返回值中data说明
+
 |字段|说明|
 |--|--|
 |count|返回条目总数|
@@ -73,6 +77,7 @@ image
 |results|返回当前页职位列表，参考“职位信息说明”|
 
 - 职位信息说明
+
 |字段|说明|
 |--|--|
 |id|职位id|
@@ -111,6 +116,7 @@ image
 <pre><code>POST /jobs/< job_id >/applications/</code></pre>
 
 - 请求参数
+
 |字段|说明|必填|
 |--|--|--|
 |name|候选人姓名|是|
@@ -122,6 +128,7 @@ image
 |resume_url|候选人简历|否|
 
 - 返回值中data说明
+
 |字段|说明|
 |--|--|
 |id|候选人申请id|
@@ -133,6 +140,7 @@ image
 
 
 - 返回示例
+
 <pre><code>{
     "code": 0,
     "error_msg": "",
@@ -153,6 +161,7 @@ image
 <pre><code>GET /jobs/< job_id >/applications/</code></pre>
 
 - 查询参数
+
 |字段|说明|
 |--|--|
 |page|分页第几页|
@@ -161,6 +170,7 @@ image
 |report_status|候选人报告状态|
 
 - 返回值中data说明
+
 |字段|说明|
 |--|--|
 |count|返回条目总数|
@@ -169,6 +179,7 @@ image
 |results|返回当前页候选人列表，参考“候选人信息说明”|
 
 - 职位信息说明
+
 |字段|说明|
 |--|--|
 |id|候选人申请id|
