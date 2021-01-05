@@ -187,6 +187,8 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 |app_qr_link|邀请候选人LeapIn APP二维码|
 |invite_code|候选人邀请码|
 |status|候选人状态|
+|invite_date|候选人邀请时间|
+|submit_date|候选人提交时间|
 |report_status|候选人报告状态|
 |leapin_score|候选人分数|
 |leapin_rank|候选人排名|
@@ -210,6 +212,8 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
                 "invite_code": "xxxx",
                 "create_date": "",
                 "status": 0,
+                "invite_date": "2021-01-05 20:00:00",
+                "submit_date": "2021-02-05 20:00:00",
                 "report_status": 0,
                 "leapin_score": 75.0,
                 "leapin_rank": 3,
