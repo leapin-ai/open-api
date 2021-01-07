@@ -9,51 +9,78 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 ## 3. 概览
 |API|描述|
 |--|--|
-|auth|使用API密钥获取临时认证token|
 |jobs|职位相关接口|
 |applications|职位申请相关接口|
 
 ## 4. 接口调用
 ### 4.1 接口地址
-<pre><code>https://app.leapin-ai.com/api/open</code></pre>
+<pre><code>生产环境：https://app.leapin-ai.com/api/open
+测试环境：https://staging.app.leapin-ai.com/api/open</code></pre>
 
-### 4.2 获取临时token
-- 接口  
-<pre><code>POST /auth/</code></pre>
+### 4.2 接口认证
+#### 4.2.1 登录saas端
+获取leapin access id和leapin access secret
+#### 4.2.2 生成JWT
+##### 构造JWT中的payload  
 
-
-- HTTP请求头
+payload中的参数  
 
 |Key|Value|
 |--|--|
-|leapin_access_id|API密钥ID|
-|leapin_access_secret|API密钥secret|
-|content-type|applications/json|
+|leapin-access-id|API密钥ID，字符串|
+|nonce|随机字符串，每次请求需要产生不同的随机数，防止重放攻击|
 
-- 返回
+示例
 <pre><code>{
-    "code": 0,
-    "data": {
-        "token": "xxxxxxx"
-    },
-    "request_id": "xxxx"
+    "nonce": "xxxxxxx",
+    "leapin-access-id": "< leapin access id>"
 }</code></pre>
+
+##### 使用leapin access secret生成JWT token
+
+|Key|Value|
+|--|--|
+|algorithm|HS256|
+
+python (<a href=https://github.com/jpadilla/pyjwt/>pyjwt</a>)
+<pre><code>import jwt
+import uuid
+payload['nonce'] = str(uuid.uuid4())
+payload['leapin-access-id'] = '< leapin access id>'
+jwt_token = jwt.encode(payload, '< leapin access secret >', algorithm='HS256')</code></pre>
+
+java (<a href=https://github.com/jpadilla/pyjwt/>pyjwt</a>)
+<pre><code>try {
+    Algorithm algorithm = Algorithm.HMAC256("< leapin access secret >");
+    String jwtToken = JWT.create()
+        .withClaim("nonce", UUID.randomUUID().toString())
+        .withClaim("leapin-access-id", "< leapin access secret >")
+        .sign(algorithm);
+} catch (JWTCreationException exception){
+    //Invalid Signing configuration / Couldn't convert Claims.
+}</code></pre>
+
 
 ### 4.3 调用
 - HTTP请求头
 
 |Key|Value|
 |--|--|
-|authorization|Bearer < token >|
+|x-leapin-open-api-access-id|API密钥ID|
+|x-leapin-open-api-token|JWT token|
 
 ### 4.4 接口返回格式
-返回数据使用json格式
+- HTTP返回头
+|Key|Value|
+|--|--|
+|x-leapin-open-api-request-id|请求在leapin平台中的ID|
 
+- 返回数据使用json格式
 |字段|说明|
 |--|--|
 |code|API返回码，详见各接口说明|
 |data|API返回数据，详见各接口说明|
-|request_id|API请求ID|
+|error_msg|API返回错误消息，详见各接口说明|
 
 ## 5. 接口说明
 ### 5.1 职位列表
