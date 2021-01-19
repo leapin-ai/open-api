@@ -49,7 +49,7 @@ payload['nonce'] = str(uuid.uuid4())
 payload['leapin-access-id'] = '< leapin access id>'
 jwt_token = jwt.encode(payload, '< leapin access secret >', algorithm='HS256')</code></pre>
 
-java (<a href=https://github.com/jpadilla/pyjwt/>pyjwt</a>)
+java
 <pre><code>try {
     Algorithm algorithm = Algorithm.HMAC256("< leapin access secret >");
     String jwtToken = JWT.create()
