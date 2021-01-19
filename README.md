@@ -77,6 +77,7 @@ java
 |x-leapin-open-api-request-id|请求在leapin平台中的ID|
 
 - 返回数据使用json格式
+
 |字段|说明|
 |--|--|
 |code|API返回码，详见各接口说明|
