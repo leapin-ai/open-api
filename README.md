@@ -45,8 +45,7 @@ payload中的参数
 python (<a href=https://github.com/jpadilla/pyjwt/>pyjwt</a>)
 <pre><code>import jwt
 import uuid
-payload['nonce'] = str(uuid.uuid4())
-payload['leapin-access-id'] = '< leapin access id>'
+payload = {'nonce': str(uuid.uuid4()), 'leapin-access-id': '< leapin access id>'}
 jwt_token = jwt.encode(payload, '< leapin access secret >', algorithm='HS256')</code></pre>
 
 java
@@ -114,7 +113,7 @@ java
 |wechat_qr_link|职位微信小程序二维码|
 |app_qr_link|职位LeapIn APP二维码|
 |invite_code|职位邀请码|
-|status|职位状态|
+|status|职位状态（0：开放，1：关闭，4：草稿）|
 
 - 返回示例
 <pre><code>{
