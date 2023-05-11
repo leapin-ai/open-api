@@ -20,68 +20,42 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 ### 4.2 接口认证
 #### 4.2.1 登录saas端
 获取leapin access id和leapin access secret
-#### 4.2.2 生成JWT
-##### 构造JWT中的payload  
+#### 4.2.2 获取Token
+调用其他接口之前，先调用下本接口获取token。
 
-payload中的参数  
+##### 访问地址 
+<pre><code>POST /access_token/
+</code></pre>
+##### 接口参数
+|参数|类型|必填|说明|
+|--|--|--|--|
+|access_id|string|是|leapin access id，LeapIn saas平台获取|
+|access_secret|string|是|leapin access secret，LeapIn saas平台获取|
 
-|Key|Value|
-|--|--|
-|leapin-access-id|API密钥ID，字符串|
-|nonce|随机字符串，每次请求需要产生不同的随机数，防止重放攻击|
+##### 返回参数
+|参数|类型|说明|
+|--|--|--|
+|code|int|状态码，0：成功，10001:缺少access_id，10002:缺少access_secret，10003:无效的access_id或access_secret|
+|error_msg|string|错误信息|
+|token|string|token|
 
-示例
-<pre><code>{
-    "nonce": "xxxxxxx",
-    "leapin-access-id": "< leapin access id>"
-}</code></pre>
+### 4.3 请求参数类型说明
+<pre><code>Content-Type: application/json
+</code></pre>
+### 4.4 验证与授权说明
+首先调用“获取token接口”，可获取一个专属的token值，然后请求其它的每一个接口，都需要在header里面设置获取的token。
 
-##### 使用leapin access secret生成JWT token
+示例如下：
+<pre><code>"Authorization" : "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZ..."
+</code></pre>
+注意：Bearer后有一个空格，后面的“eyJ0eXAiOiJKV1QiLC...”替换成获取的token
+### 4.4 请求头示例
 
-|Key|Value|
-|--|--|
-|algorithm|HS256|
-
-python (<a href=https://github.com/jpadilla/pyjwt/>pyjwt</a>)
-<pre><code>import jwt
-import uuid
-payload = {'nonce': str(uuid.uuid4()), 'leapin-access-id': '< leapin access id>'}
-jwt_token = jwt.encode(payload, '< leapin access secret >', algorithm='HS256')</code></pre>
-
-java
-<pre><code>try {
-    Algorithm algorithm = Algorithm.HMAC256("< leapin access secret >");
-    String jwtToken = JWT.create()
-        .withClaim("nonce", UUID.randomUUID().toString())
-        .withClaim("leapin-access-id", "< leapin access secret >")
-        .sign(algorithm);
-} catch (JWTCreationException exception){
-    //Invalid Signing configuration / Couldn't convert Claims.
-}</code></pre>
-
-
-### 4.3 调用
-- HTTP请求头
-
-|Key|Value|
-|--|--|
-|x-leapin-open-api-access-id|API密钥ID|
-|x-leapin-open-api-token|JWT token|
-
-### 4.4 接口返回格式
-- HTTP返回头
-
-|Key|Value|
-|--|--|
-|x-leapin-open-api-request-id|请求在leapin平台中的ID|
-
-- 返回数据使用json格式
-
-|字段|说明|
-|--|--|
-|code|API返回码，详见各接口说明|
-|data|API返回数据，详见各接口说明|
-|error_msg|API返回错误消息，详见各接口说明|
+    {
+        "Content-Type": "application/json",
+        "x-leapin-open-api-access-id": "< leapin access id>",
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZ..."
+    }
 
 ## 5. 接口说明
 ### 5.1 职位列表
@@ -110,8 +84,6 @@ java
 |--|--|
 |id|职位id|
 |name|职位名称|
-|wechat_qr_link|职位微信小程序二维码|
-|app_qr_link|职位LeapIn APP二维码|
 |invite_code|职位邀请码|
 |status|职位状态（0：开放，1：关闭，4：草稿）|
 
@@ -127,8 +99,6 @@ java
             {
                 "id": 17,
                 "name": "python开发工程师",
-                "wechat_qr_link": "xxxx",
-                "app_qr_link": "xxxx",
                 "invite_code": "xxxx",
                 "create_date": "",
                 "status": 0
@@ -149,8 +119,9 @@ java
 |--|--|--|
 |name|候选人姓名|是|
 |unique_id|候选人在调用方系统中id|否|
-|email|候选人邮箱|与mobile二选一|
-|mobile|候选人手机|与email二选一|
+|email|候选人邮箱|是|
+|mobile|候选人手机|是|
+|mobile_country_code|号码区号|否|
 |gender|候选人性别|否|
 |avatar_url|候选人头像|否|
 |resume_url|候选人简历|否|
@@ -160,8 +131,6 @@ java
 |字段|说明|
 |--|--|
 |id|候选人申请id|
-|wechat_qr_link|邀请候选人微信小程序二维码|
-|app_qr_link|邀请候选人LeapIn APP二维码|
 |invite_code|候选人邀请码|
 |status|候选人状态|
 |report_status|候选人报告状态|
@@ -174,8 +143,6 @@ java
     "error_msg": "",
     "data": {
         "id": 17,
-        "wechat_qr_link": "xxxx",
-        "app_qr_link": "xxxx",
         "invite_code": "xxxx",
         "create_date": "",
         "status": 0,
@@ -211,8 +178,6 @@ java
 |字段|说明|
 |--|--|
 |id|候选人申请id|
-|wechat_qr_link|邀请候选人微信小程序二维码|
-|app_qr_link|邀请候选人LeapIn APP二维码|
 |invite_code|候选人邀请码|
 |status|候选人状态|
 |invite_date|候选人邀请时间|
@@ -235,8 +200,6 @@ java
         "results": [
             {
                 "id": 17,
-                "wechat_qr_link": "xxxx",
-                "app_qr_link": "xxxx",
                 "invite_code": "xxxx",
                 "create_date": "",
                 "status": 0,
