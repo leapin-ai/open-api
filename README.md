@@ -117,6 +117,7 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 <pre><code>POST /jobs/< job_id >/applications/ </code></pre>
 
 - 请求参数
+
 |字段|类型|说明|必填|
 |--|--|--|--|
 |candidate_list|array|候选人数据列表|是|
@@ -164,7 +165,7 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 }</code></pre>
 
 
-### 5.1 候选人查询列表
+### 5.3 候选人查询列表
 - 接口
 <pre><code>GET /jobs/applications/</code></pre>
 
