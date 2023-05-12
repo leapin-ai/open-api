@@ -221,11 +221,14 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
         "results": [
             {
                 "id": 17,
-                "invite_code": "xxxx",
-                "create_date": "",
+                "name": "xxxx",
+                "email": "xxxx",
+                "mobile": "xxxx",
+                "mobile_country_code": "xxxx",
                 "status": 0,
                 "create_time": "2021-01-05 20:00:00",
                 "submit_time": "2021-02-05 20:00:00",
+                "invite_time": "2022-02-05 20:00:00",
                 "report_status": 0,
                 "leapin_total_score": 75.0,
                 "leapin_rank": 3,
