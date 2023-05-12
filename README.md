@@ -143,7 +143,7 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 
 |字段|类型|说明|
 |--|--|--|
-|id|int|候选人申请id|
+|id|int|候选人申请记录id|
 |unique_id|int|候选人在调用方系统中id|
 |interview_url|string|AI面试链接|
 |status|int|候选人状态，0：已邀请，1：已提交AI面试，3：复试，4：入职，5：不合适|
@@ -156,9 +156,14 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
     "code": 0,
     "error_msg": "",
     "data": {
-        "id": 17,
-        "invite_code": "xxxx",
-        "create_date": "",
+        "id": 3847, 
+        "name": "测试", 
+        "email": "xxx@xxx",
+        "mobile": "xxxxxxxxxxx", 
+        "mobile_country_code": "86", 
+        "interview_url": "https://******", 
+        "unique_id": 123
+        "create_time": "",
         "status": 0,
         "report_status": 0
     }
