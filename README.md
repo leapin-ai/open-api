@@ -250,6 +250,7 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 |字段|说明|
 |--|--|
 |0|成功|
+|403|无效|
 |10001|缺少access id|
 |10002|缺少access secret|
 |10003|无效的access id或access secret|
