@@ -148,7 +148,7 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 |interview_url|string|AI面试链接|
 |status|int|候选人状态，0：已邀请，1：已提交AI面试，3：复试，4：入职，5：不合适|
 |report_status|int|候选人报告状态， 0：不存在，1：生成中，2：生成失败，3：生成成功|
-
+|invite_expire_time|string|测评过期时间|
 
 - 返回示例
 
@@ -164,6 +164,7 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
         "interview_url": "https://******", 
         "unique_id": 123
         "create_time": "",
+        "invite_expire_time": "2023-06-01 23:59:00",
         "status": 0,
         "report_status": 0
     }
@@ -215,6 +216,7 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 |leapin_rank|候选人排名|
 |leapin_total_score|候选人分数|
 |leapin_report_url|候选人报告链接|
+|invite_expire_time|过期时间|
 
 - 返回示例
 <pre><code>{
@@ -238,7 +240,8 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
                 "report_status": 0,
                 "leapin_total_score": 75.0,
                 "leapin_rank": 3,
-                "leapin_report_url": "https://xxxxxx"
+                "leapin_report_url": "https://xxxxxx",
+                "invite_expire_time": "2023-06-01 23:59:00",
             },
             ...
         ]
