@@ -50,7 +50,7 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 <pre><code>"Authorization" : "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZ..."
 </code></pre>
 注意：Bearer后有一个空格，后面的“eyJ0eXAiOiJKV1QiLC...”替换成获取的token
-### 4.4 请求头示例
+### 4.5 请求头示例
 
     {
         "Content-Type": "application/json",
