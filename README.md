@@ -53,9 +53,9 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 ### 4.5 请求头示例
 
     {
-        "Content-Type": "application/json",
-        "x-leapin-open-api-access-id": "< leapin access id>",
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZ..."
+"Content-Type": "application/json",
+"x-leapin-open-api-access-id": "< leapin access id>",
+"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZ..."
     }
 
 ## 5. 接口说明
@@ -96,18 +96,18 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
     "code": 0,
     "error_msg": "",
     "data": {
-        "count": 3,
-        "next": null,
-        "previous": null,
-        "results": [
-            {
-                "id": 17,
-                "name": "python开发工程师",
-                "create_time": "",
-                "status": 0
-            },
-            ...
-        ]
+"count": 3,
+"next": null,
+"previous": null,
+"results": [
+    {
+"id": 17,
+"name": "python开发工程师",
+"create_time": "",
+"status": 0
+    },
+    ...
+]
     }
 }</code></pre>
 
@@ -156,17 +156,17 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
     "code": 0,
     "error_msg": "",
     "data": {
-        "id": 3847, 
-        "name": "测试", 
-        "email": "xxx@xxx",
-        "mobile": "xxxxxxxxxxx", 
-        "mobile_country_code": "86", 
-        "interview_url": "https://******", 
-        "unique_id": 123
-        "create_time": "",
-        "invite_expire_time": "2023-06-01 23:59:00",
-        "status": 0,
-        "report_status": 0
+"id": 3847, 
+"name": "测试", 
+"email": "xxx@xxx",
+"mobile": "xxxxxxxxxxx", 
+"mobile_country_code": "86", 
+"interview_url": "https://******", 
+"unique_id": 123
+"create_time": "",
+"invite_expire_time": "2023-06-01 23:59:00",
+"status": 0,
+"report_status": 0
     }
 }</code></pre>
 
@@ -177,13 +177,13 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 
 - 查询参数
 
-|字段|类型|说明|必填|
-|--|--|--|--|
-|page|int|分页第几页|否|
-|page_size|int|分页数据条数|否|
-|status|int|候选人状态|否|
-|job_id|int|职位id|否|
-|report_status|int|候选人报告状态|否|
+|字段|类型| 说明    |必填|
+|--|--|-------|--|
+|page|int| 分页第几页 |否|
+|page_size|int| 分页数据条数 |否|
+|status|int| 候选人状态 |否|
+|job_id|int| 职位id  |否|
+|report_status|int| 候选人报告状态 |否|
 
 
 - 示例
@@ -199,27 +199,42 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 |results|返回当前页候选人列表，参考“候选人信息说明”|
 
 
-- 候选人信息说明
 
-|字段|说明|
-|--|--|
-|id|候选人申请id|
-|name|候选人姓名|
-|email|候选人邮箱|
-|mobile|候选人手机号码|
-|mobile_country_code|号码区号|
-|status|候选人状态|
-|create_time|候选人创建时间|
-|invite_time|候选人被邀请时间|
-|submit_time|候选人提交时间|
-|report_status|候选人报告状态|
-|leapin_rank|候选人排名|
-|leapin_total_score|候选人分数|
-|leapin_report_url|候选人报告链接|
-|invite_expire_time|过期时间|
+- 候选人信息说明
+ 
+ *\*注：以下参数因调用方式不同，部分字段不会返回，详情见说明，无特殊说明则为必返字段*
+
+
+|字段| 含义| 注解 |说明|
+|--|--|--|--|
+|id| 候选人申请id  | ||
+|name| 候选人姓名| ||
+|email| 候选人邮箱| ||
+|mobile| 候选人手机号码  | ||
+|mobile_country_code| 号码区号 | ||
+|status| 候选人状态| ||
+|create_time| 候选人创建时间  | ||
+|invite_time| 候选人被邀请时间 | ||
+|submit_time| 候选人提交时间  | ||
+|report_status| 候选人报告状态  | ||
+|leapin_rank| 候选人排名| ||
+|leapin_total_score| 候选人分数| ||
+|leapin_report_url| 候选人报告链接  | ||
+|invite_expire_time| 过期时间 | ||
+|match_rate| 匹配度  | |租户（非第三方）平台调用时返回 |
+|match_grade| 匹配等级 | |租户（非第三方）平台调用时返回 |
+|rank_total| 参与排名的总数| |租户（非第三方）平台调用时返回 |
+|cv_url| 简历链接| |租户（非第三方）平台调用时返回 |
+|soft_ability_answer| 软能力问题回答数据 | |租户（非第三方）平台调用时返回 |
+|hard_ability_answer| 硬能力问题回答数据 | |租户（非第三方）平台调用时返回 |
+|hard_ability_assignment_problem| 硬能力赋值问题回答数据 |返回参数中若出现英语口语能力字段，该字段数据较特殊，待后续优化，详见返回示例 |租户（非第三方）平台调用时返回 |
+|ability_analysis| 能力分析| advantage:优势，medium:中等，to_be_improved:待发展 |租户（非第三方）平台调用时返回 |
+|big_five_score| 大五人格测评得分 | a:宜人性，c:尽责性，e:外向性，n:情绪性，o:开放性       |租户（非第三方）平台调用时返回 |
 
 - 返回示例
-<pre><code>{
+<pre><code>
+
+{
     "code": 0,
     "error_msg": "",
     "data": {
@@ -235,18 +250,86 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
                 "mobile_country_code": "xxxx",
                 "status": 0,
                 "create_time": "2021-01-05 20:00:00",
-                "submit_time": "2021-02-05 20:00:00",
-                "invite_time": "2022-02-05 20:00:00",
+                "submit_time": "2021-01-15 20:00:00",
+                "invite_time": "2021-01-05 20:00:00",
                 "report_status": 0,
                 "leapin_total_score": 75.0,
                 "leapin_rank": 3,
                 "leapin_report_url": "https://xxxxxx",
                 "invite_expire_time": "2023-06-01 23:59:00",
-            },
+                "match_rate": 60,
+                "match_grade": "较差",
+                "rank_total": 10,
+                "cv_url": "https://xxxxxx",
+                "soft_ability_answer": [
+                    {
+                        "id": 12,
+                        "question_id": 1,
+                        "question_name": "你的优势是什么？",
+                        "video_url": "https://xxxxxx",
+                        "score": 80,
+                        "is_cheat": False,
+                        "score_description": "中等",
+                        "competency_description": "",
+                        "competency_name": "适应能力",
+                        "competency_id": 876,
+                    }
+                ],
+                "hard_ability_answer": [
+                    {
+                        "id": 12,
+                        "question_id": 1,
+                        "question_name": "你毕业的院校及所学专业是什么？",
+                        "video_url": None,
+                        "score": "",
+                        "is_cheat": False,
+                        "score_description": "",
+                        "competency_description": "",
+                        "competency_name": "毕业院校背景",
+                    }
+                ],
+                "hard_ability_assignment_problem": [
+                   {
+                        "id": 8681,
+                        "oral_id": 68,
+                        "name":"英语口语能力",
+                        "max_score": None,
+                        "total": 10,"data": [],
+                        "total_score": 3.1,
+                        "is_success": True,
+                        "is_checked": True,
+                        "is_cheat": False,
+                        "fluency": 3.0,
+                        "rhythm": 5.0,
+                        "relevance": None,
+                        "integrity": 5.0,
+                        "pronunciation": 6.0,
+                        "grammatical_accuracy": None,
+                        "vocabulary_richness": None,
+                        "question_type": 4,
+                        "question_category": 4,
+                        "answer_type": 3,
+                        "total_application_count": 2
+                    },
+                    {
+                         "name":"学位","id": 8689,"total_application_count": 2,"question_type": 0,"total": 1,
+                         "max_score": 1,
+                         "total_score": 1,"answer_type": 0,
+                         "data": [
+                             {"name":"学士","value": 1,"index": 0,"option_score": 0},
+                             {"name":"硕士","value": 1,"index": 1, "option_score": 1}],
+                          "score": 0
+                    }
+
+                ],
+                "ability_analysis": {"advantage": [],"medium": [],"to_be_improved": []},
+                "big_five_score": None
             ...
         ]
+            
     }
-}</code></pre>
+}
+</code></pre>
 
 ## 6. 通用状态码
 
