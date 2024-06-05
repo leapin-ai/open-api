@@ -221,15 +221,15 @@ LeapIn提供开放接口供第三方平台进行集成。包括ATS，HCM等系�
 |leapin_total_score| 候选人分数| ||
 |leapin_report_url| 候选人报告链接  | ||
 |invite_expire_time| 过期时间 | ||
-|match_rate| 匹配度  | |租户（非第三方）平台调用时返回 |
-|match_grade| 匹配等级 | |租户（非第三方）平台调用时返回 |
-|rank_total| 参与排名的总数| |租户（非第三方）平台调用时返回 |
-|cv_url| 简历链接| |租户（非第三方）平台调用时返回 |
-|soft_ability_answer| 软能力问题回答数据 | |租户（非第三方）平台调用时返回 |
-|hard_ability_answer| 硬能力问题回答数据 | |租户（非第三方）平台调用时返回 |
-|hard_ability_assignment_problem| 硬能力赋值问题回答数据 |返回参数中若出现英语口语能力字段，该字段数据较特殊，待后续优化，详见返回示例 |租户（非第三方）平台调用时返回 |
-|ability_analysis| 能力分析| advantage:优势，medium:中等，to_be_improved:待发展 |租户（非第三方）平台调用时返回 |
-|big_five_score| 大五人格测评得分 | a:宜人性，c:尽责性，e:外向性，n:情绪性，o:开放性       |租户（非第三方）平台调用时返回 |
+|match_rate| 匹配度  | |目前仅用于租户平台调用，第三方平台调用不返回 |
+|match_grade| 匹配等级 | |目前仅用于租户平台调用，第三方平台调用不返回 |
+|rank_total| 参与排名的总数| |目前仅用于租户平台调用，第三方平台调用不返回 |
+|cv_url| 简历链接| |目前仅用于租户平台调用，第三方平台调用不返回 |
+|soft_ability_answer| 软能力问题回答数据 | |目前仅用于租户平台调用，第三方平台调用不返回 |
+|hard_ability_answer| 硬能力问题回答数据 | |目前仅用于租户平台调用，第三方平台调用不返回 |
+|hard_ability_assignment_problem| 硬能力赋值问题回答数据 |返回参数中若出现英语口语能力字段，该字段数据较特殊，待后续优化，详见返回示例 |目前仅用于租户平台调用，第三方平台调用不返回 |
+|ability_analysis| 能力分析| advantage:优势，medium:中等，to_be_improved:待发展 |目前仅用于租户平台调用，第三方平台调用不返回 |
+|big_five_score| 大五人格测评得分 | a:宜人性，c:尽责性，e:外向性，n:情绪性，o:开放性       |目前仅用于租户平台调用，第三方平台调用不返回 |
 
 - 返回示例
 <pre><code>
